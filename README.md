@@ -9,9 +9,20 @@ Write a C program to convert a 23.65 into 25 using pointer
 4.	Print the modified value.
 
 ## PROGRAM:
+```
+#include <stdio.h>
 
+int main() {
+    double num = 23.65;
+    double *ptr = &num;
+    *ptr = 25.0;
+    printf("Modified value: %.2f\n", num);
+    return 0;
+}
+
+```
 ## OUTPUT:
- 	
+ ![alt text](image.png)	
 
 
 
@@ -45,8 +56,26 @@ Write a C program to calculate the Product of first 12 natural numbers using Rec
 6.	Print the result, indicating it is the product of the first 12 natural numbers.
 
 ## PROGRAM:
+```
+#include <stdio.h>
+unsigned long long calculateProduct(int n) {
+    if (n == 1)
+        return 1;
+    return n * calculateProduct(n - 1);
+}
+
+int main() {
+    int n;
+    unsigned long long product;
+    n = 12;
+    product = calculateProduct(n);
+    printf("Product of the first 12 natural numbers is: %llu\n", product);
+
+    return 0;
+}
+```
 ## OUTPUT:
-         		
+![alt text](image-1.png)
 ## RESULT:
 
 Thus the program has been executed successfully.
@@ -68,11 +97,32 @@ Write C Program to find Sum of each row of a Matrix
 4.	Print the sum for each row.
 
 ## PROGRAM:
+```
+#include <stdio.h>
+
+int main() {
+    int matrix[3][4] = {
+        { 2,  4,  6,  8},
+        { 16,  14,  12,  10},
+        { 1, 3, 5, 7}
+    };
+    int rows = 3;
+    int cols = 4;
+    for (int i = 0; i < rows; i++) {
+        int sum = 0;           // reset sum for each row
+        for (int j = 0; j < cols; j++) {
+            sum += matrix[i][j];
+        }
+        printf("Sum of row %d = %d\n", i + 1, sum);
+    }
+
+    return 0;
+}
 
 
-
+```
 ## OUTPUT
-
+![alt text](image-2.png)
 
  
  
@@ -96,10 +146,45 @@ Write C program for the below pyramid string pattern. Enter a string: PROGRAM En
 5.	End the program.
 
 ## PROGRAM:
+```
+#include <stdio.h>
+#include <string.h>
 
+int main() {
+    char str[100];
+    int num_rows;
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+
+    printf("Enter number of rows: ");
+    scanf("%d", &num_rows);
+
+    int len = strlen(str);
+    int i, j;
+    int index = 0;
+    for (i = 1; i <= num_rows; i++) {
+        for (j = 1; j <= i; j++) {
+            printf("%c", str[index]);
+            index++;
+            if (index >= len) {
+                index = 0;
+            }
+            if (j < i) {
+                printf(" ");  
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
+```
 
  ## OUTPUT
-
+![alt text](image-3.png)
  
 
 ## RESULT
@@ -132,9 +217,35 @@ Step 5: Loop from i = 0 to i < n:
 Step 6: End the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
 
+int main() {
+    int i, n;  
+    int arr[10];          
+    int *parr = arr;       
+    printf("Enter number of elements (up to 10): ");
+    scanf("%d", &n);
+    if (n < 1 || n > 10) {
+        printf("Invalid number of elements. Please choose between 1 and 10.\n");
+        return 1;
+    }
+  
+    printf("Enter %d integer elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", (parr + i));
+    }  
+    printf("The array elements are:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", *(parr + i));
+    }
+    printf("\n");
+    return 0;
+}
+
+```
 ## OUTPUT
-
+![alt text](image-4.png)
  
 
 ## RESULT
